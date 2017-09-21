@@ -9,8 +9,7 @@ public class ContactService {
 
     void creerContact(String nom, String tel) throws Exception{
         Contact c ;
-        char[] nomTab = nom.toCharArray();
-        if(nomTab.length >= 3 && nomTab.length <= 40) {
+        if(nom!=null && nom.length() >= 3 && nom.length() <= 40) {
             if(dao.isContactExiste(nom)==false) {
                 c = new Contact(nom, tel);
             }

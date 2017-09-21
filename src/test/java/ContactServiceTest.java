@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class ContactServiceTest {
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void creerContact1() throws Exception {
         ContactService cs = new ContactService();
         //nom vide || null -> KO

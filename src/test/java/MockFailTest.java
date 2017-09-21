@@ -1,4 +1,5 @@
 import org.easymock.*;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class MockFailTest extends MockTest {
@@ -7,8 +8,8 @@ public class MockFailTest extends MockTest {
     @Mock
     private IContactDao dao;
 
-    @Test
-    public void testCreerContactCasValide() throws Exception{
+    @Test(expected = ContactExistException.class)
+    public void testCreerContactCasNonValide() throws Exception{
         //Phase d'enregistrement des comportements
         String nom = "ContactOK";
         String tel = "9874959343";
@@ -24,6 +25,26 @@ public class MockFailTest extends MockTest {
 
         //Vérification
         verifyAll();
+    }
+
+    @Test
+    public void testCreerContactCasValide() throws Exception{
+        //Phase d'enregistrement des comportements
+        String nom = "ContactOK";
+        String tel = "9874959343";
+        EasyMock.expect(dao.isContactExiste(nom)).andReturn(false);
+
+        Capture<Contact> capture = EasyMock.newCapture();
+        dao.creerContact(EasyMock.capture(capture));
+        //Fin de l'enregistrement
+        replayAll();
+
+        //Appel de la méthode
+        service.creerContact(nom,tel);
+
+        //Vérification
+        verifyAll();
+        Assert.assertEquals(nom, capture.getValue().getNom());
     }
 
     /* @Test
