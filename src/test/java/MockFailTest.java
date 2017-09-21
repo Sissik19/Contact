@@ -47,8 +47,8 @@ public class MockFailTest extends MockTest {
         Assert.assertEquals(nom, capture.getValue().getNom());
     }
 
-    /* @Test
-    public void testSupprimerContactCasValide() throws Exception{
+    /*@Test(expected = ContactExistException.class)
+    public void testSupprimerContactCasNonValide() throws Exception{
         //Phase d'enregistrement des comportements
         String nom = "ContactOK";
         EasyMock.expect(dao.isContactExiste(nom)).andReturn(true);

@@ -2,21 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactDao implements IContactDao {
-    List <Contact> contacts;
 
+
+    ArrayList <Contact> contacts;
     ContactDao(){
         this.contacts= new ArrayList<Contact>();
     }
 
+    public ArrayList<Contact> getContacts() {
+        return contacts;
+    }
 
-    public void creerContact(Contact c) throws ContactExistException {
-        boolean contactFind = isContactExiste(c.getNom());
-        if(contactFind==false) {
+
+
+
+    public void creerContact(Contact c){
             this.contacts.add(c);
-        }
-        else{
-            throw new ContactExistException("Echec : Contact non présent dans la liste");
-        }
     }
 
 

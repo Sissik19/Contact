@@ -1,6 +1,6 @@
 public class ContactService {
 
-    IContactDao dao;
+    private IContactDao dao;
 
     ContactService (){
         dao = new ContactDao();
@@ -10,7 +10,7 @@ public class ContactService {
     void creerContact(String nom, String tel) throws Exception{
         Contact c ;
         if(nom!=null && nom.length() >= 3 && nom.length() <= 40) {
-            if(dao.isContactExiste(nom)==false) {
+            if(!dao.isContactExiste(nom)) {
                 c = new Contact(nom, tel);
             }
             else{
@@ -23,10 +23,10 @@ public class ContactService {
         dao.creerContact(c);
     }
     void creerContact(String nom) throws Exception{
-        Contact c = null;
+        Contact c;
         char[] nomTab = nom.toCharArray();
         if(nomTab.length >= 3 && nomTab.length <= 40) {
-            if(dao.isContactExiste(nom)==false) {
+            if(!dao.isContactExiste(nom)) {
                 c = new Contact(nom);
             }
             else{
@@ -37,5 +37,15 @@ public class ContactService {
             throw new IllegalArgumentException("Erreur : nom incorrect");
         }
         dao.creerContact(c);
+    }
+
+    void supprimerContact(String nom) throws Exception{
+        if(dao.isContactExiste(nom)) {
+            Contact c = dao.recupererContact(nom);
+            dao.getContacts().remove(c);
+        }
+        else{
+            throw new ContactExistException("Erreur : contact non existant");
+        }
     }
 }
