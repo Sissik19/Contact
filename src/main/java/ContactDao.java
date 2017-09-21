@@ -55,7 +55,7 @@ public class ContactDao implements IContactDao {
     public boolean isContactExiste(final String nom) {
         boolean contactFind = false;
         for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getNom() == nom) {
+            if (contacts.get(i).getNom().equals(nom)) {
                 contactFind = true;
             }
         }
