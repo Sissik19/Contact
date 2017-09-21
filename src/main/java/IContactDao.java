@@ -1,10 +1,13 @@
 import java.util.ArrayList;
 
+/**
+ * Interface de IContactDao.
+ */
 public interface IContactDao {
-    public void creerContact(Contact c) throws ContactExistException;
-    public Contact recupererContact(String nom);
-    public boolean isContactExiste(String nom);
-    public void supprimerContact(String nom) throws ContactExistException;
-    public ArrayList<Contact> getContacts();
+    void creerContact(Contact c) throws ContactExistException;
+    Contact recupererContact(String nom);
+    boolean isContactExiste(String nom);
+    void supprimerContact(String nom) throws ContactExistException;
+    ArrayList<Contact> getContacts();
 
 }

@@ -1,8 +1,8 @@
 public class ContactExistException extends Exception {
-    ContactExistException(){
+    ContactExistException() {
         super();
     }
-    ContactExistException(String e){
+    ContactExistException(String e) {
         super(e);
     }
 }
