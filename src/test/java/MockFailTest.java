@@ -14,8 +14,8 @@ public class MockFailTest extends MockTest {
         String tel = "9874959343";
         EasyMock.expect(dao.isContactExiste(nom)).andReturn(true);
 
-        Capture<String> capture = EasyMock.newCapture();
-        service.creerContact(EasyMock.capture(capture));
+       // Capture<String> capture = EasyMock.newCapture();
+        //service.creerContact(EasyMock.capture(capture));
         //Fin de l'enregistrement
         replayAll();
 
